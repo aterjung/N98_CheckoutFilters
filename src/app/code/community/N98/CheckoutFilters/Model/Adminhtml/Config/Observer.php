@@ -50,6 +50,7 @@ class N98_CheckoutFilters_Model_Adminhtml_Config_Observer
         if ($section->tab == 'sales') {
             if (in_array($section->label, array('Payment Methods', 'Shipping Methods'))) {
                 foreach ($section->groups as $group) {
+                    $group->addAttribute('dynamic_group', 1);
                     foreach ($group as $subGroup) {
                         if (isset($subGroup->fields)) {
                             $this->_addCustomergroupFieldToConfigGroup($subGroup);
@@ -61,6 +62,7 @@ class N98_CheckoutFilters_Model_Adminhtml_Config_Observer
             // Add fields only for payment methods
             if (in_array($section->label, array('Payment Methods'))) {
                 foreach ($section->groups as $group) {
+                    $group->addAttribute('dynamic_group', 1);
                     foreach ($group as $subGroup) {
                         if (isset($subGroup->fields)) {
                             $this->_addMinYearFieldToConfigGroup($subGroup);
@@ -119,7 +121,6 @@ class N98_CheckoutFilters_Model_Adminhtml_Config_Observer
         /**
          * Min age in years
          */
-        $subGroup->addAttribute('dynamic_group', 1);
         $minAge = $subGroup->fields->addChild('available_min_age');
         $minAge->addAttribute('translate', 'label');
         /* @var $customerGroup Mage_Core_Model_Config_Element */
@@ -137,7 +138,6 @@ class N98_CheckoutFilters_Model_Adminhtml_Config_Observer
      */
     protected function _addCustomergroupFieldToConfigGroup($subGroup)
     {
-        $subGroup->addAttribute('dynamic_group', 1);
         $customerGroup = $subGroup->fields->addChild('available_for_customer_groups');
         $customerGroup->addAttribute('translate', 'label');
         /* @var $customerGroup Mage_Core_Model_Config_Element */

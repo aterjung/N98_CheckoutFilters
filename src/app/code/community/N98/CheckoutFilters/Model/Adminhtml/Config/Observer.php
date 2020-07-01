@@ -119,6 +119,7 @@ class N98_CheckoutFilters_Model_Adminhtml_Config_Observer
         /**
          * Min age in years
          */
+        $subGroup->addAttribute('dynamic_group', 1);
         $minAge = $subGroup->fields->addChild('available_min_age');
         $minAge->addAttribute('translate', 'label');
         /* @var $customerGroup Mage_Core_Model_Config_Element */
@@ -136,6 +137,7 @@ class N98_CheckoutFilters_Model_Adminhtml_Config_Observer
      */
     protected function _addCustomergroupFieldToConfigGroup($subGroup)
     {
+        $subGroup->addAttribute('dynamic_group', 1);
         $customerGroup = $subGroup->fields->addChild('available_for_customer_groups');
         $customerGroup->addAttribute('translate', 'label');
         /* @var $customerGroup Mage_Core_Model_Config_Element */
